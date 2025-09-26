@@ -87,15 +87,14 @@ reshaped_df["Case"] = reshaped_df["Case"].map(case_map).fillna(-1).astype(int)
 
 
 # FINAL NUMERIC STRUCTURE
-
 reshaped_df = reshaped_df[["Year", "Month", "Consultation_Type", "Case", "Sex", "Age_range", "Total"]]
 
+# SORT BY YEAR & MONTH (descending)
+reshaped_df = reshaped_df.sort_values(by=["Year", "Month"], ascending=[True, True]).reset_index(drop=True)
 
 # SAVE TO NEW EXCEL
-
 reshaped_df.to_excel(output_file, index=False)
 
 print(f"✅ Numeric Excel saved as: {output_file}")
 print("\n🔑 Case encoding dictionary:")
 print(case_map)
-
